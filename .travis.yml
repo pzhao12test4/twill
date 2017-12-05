@@ -2,9 +2,8 @@ before_cache:
 - rm -rf $HOME/CACHE; find $TRAVIS_BUILD_DIR -name .starts | while read line; do du
   -sh $line;         DIR=$(dirname $HOME/CACHE$line); mkdir -p $DIR; cp -r $line $DIR;
   done
-- rm -rf $HOME/CACHE; find $TRAVIS_BUILD_DIR -name jdeps-cache | while read line;
-  do du -sh $line;         DIR=$(dirname $HOME/CACHE$line); mkdir -p $DIR; cp -r $line
-  $DIR; done
+- find $TRAVIS_BUILD_DIR -name jdeps-cache | while read line; do du -sh $line;         DIR=$(dirname
+  $HOME/CACHE$line); mkdir -p $DIR; cp -r $line $DIR; done
 - echo CACHESIZE $(du -sh $HOME/CACHE)
 before_install:
 - find $HOME/CACHE -name jdeps-cache | while read line; do du -sh $line;         DIR=$(dirname
@@ -29,7 +28,6 @@ cache:
   directories:
   - $HOME/.m2
   - $HOME/CACHE
-dist: precise
 env:
 - PROFILE='hadoop-2.0'
 - PROFILE='hadoop-2.1'
